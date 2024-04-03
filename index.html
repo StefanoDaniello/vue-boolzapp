@@ -46,31 +46,50 @@
                 <div class="toolbar"></div>
                 <div class="chat">
                     <div class="row d-flex justify-content-end ">
-
                         <div class="col-6">
-                            <div class="message bg-success ">Hai portato a spasso il cane?
+                            <div class="message bg-success "> Hai portato a spasso il cane?
                                 <div class="time d-flex justify-content-end">12:00</div>
                             </div>
-                            <div class="message bg-success ">Hai portato a spasso il cane?
+                            <div class="message bg-success "> Hai portato a spasso il cane?
                                 <div class="time d-flex justify-content-end">12:00</div>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="row">
                         <div class="col-6">
                             <div class="message bg-light ">Un altro messaggio bianco
                                 <div class="time d-flex justify-content-end">12:00</div>
                             </div>
                         </div>
-                      
                     </div>
+
+                    <!-- mesaggio che invio -->
+                    <div class="row d-flex justify-content-end" v-for="(message, index) in messages" :key="index">
+                        <div class="col-6">
+
+                            <div :class="{ 'message bg-success' : prova}"> {{message}}
+                                <div :class="{'time d-flex justify-content-end' : message}"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- mesaggio da generare -->
+                    <!-- <div class="row">
+                        <div class="col-6">
+                            <div class="message bg-light ">Un altro messaggio bianco
+                                <div class="time d-flex justify-content-end">12:00</div>
+                            </div>
+                        </div>
+                    </div>
+                     -->
                 </div>
             
                 <div class="messageinput">
                     <div class="bg-body-secondary d-flex h-100 align-items-center justify-content-center ">
                         <span class="px-3"><i class="fa-regular fa-face-smile color"></i></span>
                         <input type="text"  class="form-control my-2" placeholder="Scrivi un messaggio" v-model="newMessage">
+                        <button  @click="sendMessage" class="btn btn-success ">mesaggio</button>
                         <span class="px-3"><i class="fa-solid fa-microphone color"></i></span>
                     </div>
                 </div>
