@@ -13,7 +13,7 @@ createApp({
             bgmessage:false,
             bgmessage2:false,
             messages:[],
-            idutentea:1
+            utenteactive:null,
         }
     },
     methods: {
@@ -29,7 +29,12 @@ createApp({
                 this.saluto='ciao';
             }, 1000);
         },
+        active(id) {
+            this.utenteactive= id;
+        }
     },
     computed: {
     }
 }).mount('#app')
+
+

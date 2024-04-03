@@ -27,15 +27,18 @@ img{
 }
 .toolbar{
     height: 70px;
-    background-color: gray;
+    background-color: rgb(236, 236, 236);
 }
 .notification{
     height: 70px;
-    background-color: #009688;
+    background-color: #8EDAFC;
+    display:flex;
+    align-items: center;
+    padding: 10px 20px;
 }
 .searchbar{
     height: 50px;
-    background-color: aqua;
+    background-color: white;
 }
 .contacts{
     height: calc(100% - 190px);
@@ -48,6 +51,7 @@ img{
 
 .avatar{
     width: 50px;
+    height: 50px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -61,10 +65,7 @@ img{
     padding: 20px;
     background-image: url(../img/mine.jpg);
 }
-.left{
-    width: 100%;
-
-}
+i
 .time{
     font-size: 10px;
 }
@@ -77,12 +78,34 @@ img{
     padding: 10px 15px 10px 15px;
     border-radius: 10px;
 }
-.color{
-    color: rgb(107, 107, 107);
+.color-i{
+    color: rgb(172, 170, 170);
+}
+.active{
+    background-color: rgb(228, 227, 227);
 }
 
+.fa-bell-slash{
+    color: #8EDAFC;
+    font-size: 20px;
+}
 
+.search-container {
+    position: relative;
+    margin: 10px;
 
+}
 
+.search-input {
+    padding: 5px 5px 5px 30px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px; 
+    transform: translateY(-50%);
+    color: black;
+}
 
 
