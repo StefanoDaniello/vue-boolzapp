@@ -45,29 +45,32 @@
             <div id="chatWrapper" class="debug">
                 <div class="toolbar"></div>
                 <div class="chat">
-                    <div class="right">
-                        <div class="message p-2 m-2 rounded-2 bg-success w-50 ">Hai portato a spasso il cane?
-                            <div class="time d-flex justify-content-end ">12:00</div>
-                        </div>
-                        <div class="message p-2 m-2 rounded-2 bg-success w-50 ">Hai portato a spasso il cane?
-                            <div class="time d-flex justify-content-end ">12:00</div>
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="left">
-                        <div class="message2 p-2 m-2 rounded-2 bg-light w-50 ">Tutto fatto!
-                            <div class="time d-flex justify-content-end ">12:00</div>
+                    <div class="row d-flex justify-content-end ">
 
+                        <div class="col-6">
+                            <div class="message bg-success ">Hai portato a spasso il cane?
+                                <div class="time d-flex justify-content-end">12:00</div>
+                            </div>
+                            <div class="message bg-success ">Hai portato a spasso il cane?
+                                <div class="time d-flex justify-content-end">12:00</div>
+                            </div>
                         </div>
+
                     </div>
-                   
-                  
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="message bg-light ">Un altro messaggio bianco
+                                <div class="time d-flex justify-content-end">12:00</div>
+                            </div>
+                        </div>
+                      
+                    </div>
                 </div>
+            
                 <div class="messageinput">
                     <div class="bg-body-secondary d-flex h-100 align-items-center justify-content-center ">
                         <span class="px-3"><i class="fa-regular fa-face-smile color"></i></span>
-                        <input type="text"  class="form-control my-2" placeholder="Scrivi un messaggio" >
+                        <input type="text"  class="form-control my-2" placeholder="Scrivi un messaggio" v-model="newMessage">
                         <span class="px-3"><i class="fa-solid fa-microphone color"></i></span>
                     </div>
                 </div>
