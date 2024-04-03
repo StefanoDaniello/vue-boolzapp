@@ -8,9 +8,12 @@ createApp({
         return {
             contacts,
             newMessage:'',
-            prova:false,
-            messages:[]
-
+            saluto:'',
+            data:new Date().toLocaleTimeString(),
+            bgmessage:false,
+            bgmessage2:false,
+            messages:[],
+            idutentea:1
         }
     },
     methods: {
@@ -18,9 +21,13 @@ createApp({
 
             if (this.newMessage.trim() !== '') {
               this.messages.push(this.newMessage);
-              this.prova = true
+              this.bgmessage = true;
               this.newMessage = '';
             }
+            setTimeout(() => {
+                this.bgmessage2 = true;
+                this.saluto='ciao';
+            }, 1000);
         },
     },
     computed: {
