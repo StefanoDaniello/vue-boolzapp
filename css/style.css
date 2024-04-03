@@ -46,7 +46,8 @@ img{
 }
 .contact{
     padding: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid  rgb(172, 170, 170);
+    ;
 }
 
 .avatar{

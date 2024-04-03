@@ -14,6 +14,7 @@ createApp({
             bgmessage2:false,
             messages:[],
             utenteactive:null,
+            searchText: '',
         }
     },
     methods: {
@@ -31,9 +32,14 @@ createApp({
         },
         active(id) {
             this.utenteactive= id;
-        }
+        },
     },
     computed: {
+        findUser() {
+            return this.contacts.filter(contact => {
+              return contact.name.toLowerCase().includes(this.searchText.toLowerCase());
+            });
+        }
     }
 }).mount('#app')
 

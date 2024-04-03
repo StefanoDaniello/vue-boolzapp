@@ -17,7 +17,7 @@
 
         <div class="container h-100  bg-light p-0 d-flex ">
 
-            <div id="contactList" class="debug">
+            <div id="contactList" >
                 <div class="toolbar d-flex justify-content-between">
 
                     <div class="d-flex align-items-center">
@@ -49,11 +49,11 @@
                    
                 </div>
                 <div class="search-container">
-                    <input type="text" class="search-input form-control " placeholder="Cerca..." v-model="searchQuery" @input="findTask">
+                    <input type="text" class="search-input form-control " placeholder="Cerca..." v-model="searchText">
                     <i class="fas fa-search search-icon"></i>
                 </div>  
                 <div class="contacts">
-                    <div class="contact d-flex justify-content-between " v-for="(contact, index) in contacts" :key="index" @click="active(contact.id)"
+                    <div class="contact d-flex justify-content-between " v-for="(contact, index) in findUser" :key="index" @click="active(contact.id)"
                         :class="{'active' : utenteactive === contact.id}">
                         <div class="d-flex ">
                             <div class="avatar">
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div id="chatWrapper" class="debug">
+            <div id="chatWrapper" >
                 <div class="toolbar d-flex justify-content-between">
 
                     <div class="d-flex align-items-center mx-2">
@@ -99,7 +99,7 @@
                 <div class="chat">
                     <div class="row d-flex justify-content-end" v-if="utenteactive !== null">
 
-                        <div class="col-8 " v-for="(message, msgIndex) in contacts[utenteactive - 1].messages.slice(0,2)" :key="msgIndex">
+                        <div class="col-6 mx-2" v-for="(message, msgIndex) in contacts[utenteactive - 1].messages.slice(0,2)" :key="msgIndex">
                             <div class="message bg-success">
                                 {{ message.message }}
                                 <div class="time d-flex justify-content-end">{{ message.date }}</div>
@@ -109,7 +109,7 @@
                     
                     <!-- Ultimo messaggio del contatto attivo -->
                     <div class="row" v-if="utenteactive !== null">
-                        <div class="col-6">
+                        <div class="col-4 mx-2">
                             <div class="message bg-light">
                                 {{ contacts[utenteactive - 1].messages[contacts[utenteactive - 1].messages.length - 1].message }}
                                 <div class="time d-flex justify-content-end">{{ contacts[utenteactive - 1].messages[contacts[utenteactive - 1].messages.length - 1].date }}</div>
