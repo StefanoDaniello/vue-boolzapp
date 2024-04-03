@@ -60,13 +60,28 @@ img{
     overflow-y: auto;
     padding: 20px;
     background-image: url(../img/mine.jpg);
+    display: flex;
+    flex-wrap: wrap;
+}
+.left{
+    width: 100%;
+
+}
+.right{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    align-content: center;    
+}
+
+.time{
+    font-size: 10px;
 }
 .messageinput{
     height: 50px;
  
 }
-
-
 .color{
     color: rgb(107, 107, 107);
 }
