@@ -53,13 +53,23 @@ img{
 }
 #chatWrapper{
     width: 60%;
+    
 }
 .chat{
-    height: calc(100% - 140px);
+    height: calc(100% - 120px);
     overflow-y: auto;
     padding: 20px;
+    background-image: url(../img/mine.jpg);
+}
+.messageinput{
+    height: 50px;
+ 
 }
 
+
+.color{
+    color: rgb(107, 107, 107);
+}
 
 
 
