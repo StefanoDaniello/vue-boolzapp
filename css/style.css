@@ -12,6 +12,9 @@
 img{
     width: 100%;
 }
+ul{
+    list-style: none;
+}
 .debug{
     border: 1px solid red;
 }
@@ -109,4 +112,10 @@ i
     color: black;
 }
 
+.menu{
+    height: 70px;
+    background-color: rgb(236, 236, 236);
+    padding: 10px ;
+
+}
 

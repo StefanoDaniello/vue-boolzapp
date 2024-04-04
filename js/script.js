@@ -8,11 +8,11 @@ createApp({
         return {
             contacts,
             newMessage:'',
-            // saluto:'',
             data:new Date().toLocaleTimeString(),
             messages:[],
             utenteactive:1,
             searchText: '',
+            showMenuIndex: null,
         }
     },
     methods: {
@@ -42,8 +42,15 @@ createApp({
         },
         active(id) {
             this.utenteactive = id;
+        },
+        toggleMenu(msgIndex) {
+            // Se il menu è già aperto sul messaggio corrente, chiudilo
+            if (this.showMenuIndex === msgIndex) {
+                this.showMenuIndex = null;
+            } else {
+                this.showMenuIndex = msgIndex; // Altrimenti apri il menu sul messaggio corrente
+            }
         }
-        
     },
     computed: {
         activeContact() {
