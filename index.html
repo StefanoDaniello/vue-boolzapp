@@ -69,8 +69,9 @@
                             </div>
                         </div>
                         <div class="mx-1 time">Ultimo Acesso oggi alle :
-                            <div class="time text-center">{{data}}</div>
+                            <div class="time text-center">{{activeContact.messages[activeContact.messages.length -1].date}}</div>
                         </div>
+
                         
                     </div>
                 </div>
@@ -82,11 +83,11 @@
 
                     <div class="d-flex align-items-center mx-2" >
                         <div class="avatar" >
-                            <img :src="`./img/avatar_${utenteactive}.jpg`" alt="{{contact.name}}">
+                            <img :src="`./img/avatar_${utenteactive}.jpg`" alt={{activeContact.name}}>
                         </div>
-                        <div v-for="(contact, index) in contacts" :key="index" >
-                            <h6 class="mx-1 mt-3">{{contact.name}}</h6>
-                            <p class="mx-1 time">Ultimo acesso oggi alle {{data}}</p>
+                        <div>
+                            <h6 class="mx-1 mt-3">{{activeContact.name}}</h6>
+                            <p class="mx-1 time">Ultimo acesso oggi alle {{activeContact.messages[activeContact.messages.length -1].date}}</p>
                         </div>
                         
                     </div>
@@ -103,9 +104,9 @@
                 <div class="chat">
 
                     <div class="container ">
-                        <div class="row" v-for="(message, msgIndex) in activeContact.messages" :key="msgIndex" 
-                        :class="(message.status === 'received') ? 'message bg-light p-0 w-50' : 'message bg-success p-0  d-flex justify-content-end '">
-                            <div class="col-6 mx-2" >
+                        <div :class="(message.status === 'received') ? ' row ' : ' row d-flex justify-content-end '"
+                         v-for="(message, msgIndex) in activeContact.messages" :key="msgIndex" >
+                            <div :class="(message.status === 'received') ? 'message bg-light col-6 mx-2' : 'message bg-success col-6 mx-2 '">
                                 {{ message.message}}
                                 <div class="time d-flex justify-content-end">{{ message.date }}</div>
                             </div>
