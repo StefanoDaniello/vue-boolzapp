@@ -13,6 +13,7 @@ createApp({
             utenteactive:1,
             searchText: '',
             showMenuIndex: null,
+            selectedMessage:0,
         }
     },
     methods: {
@@ -43,14 +44,32 @@ createApp({
         active(id) {
             this.utenteactive = id;
         },
-        toggleMenu(msgIndex) {
-            // Se il menu è già aperto sul messaggio corrente, chiudilo
-            if (this.showMenuIndex === msgIndex) {
-                this.showMenuIndex = null;
-            } else {
-                this.showMenuIndex = msgIndex; // Altrimenti apri il menu sul messaggio corrente
+        toggleMenu(chatId, msgIndex) {
+            const utenteActiveIndex = this.contacts.findIndex(contact => contact.id === chatId);
+            if (utenteActiveIndex !== -1) {
+                this.selectedMessage = this.contacts[utenteActiveIndex].messages[msgIndex];
+                if(this.selectedMessage === this.showMenuIndex) {
+                    this.showMenuIndex = null;
+                }
+                else {
+                    this.showMenuIndex = this.selectedMessage;
+                }
+                console.log(this.selectedMessage);
             }
-        }
+            // if (this.showMenuIndex === msgIndex) {
+            //     this.showMenuIndex = null;
+            // } else {
+            //     this.showMenuIndex = msgIndex;
+            // }
+        },
+        deleteMessage(chatId, msgIndex) {
+            // Trova l'indice del contatto corrente
+            const contactIndex = this.contacts.findIndex(contact => contact.id === chatId);
+            if (contactIndex !== -1) {
+                    this.contacts[contactIndex].messages.splice(msgIndex, 1);
+                }
+            }
+        
     },
     computed: {
         activeContact() {

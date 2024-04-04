@@ -113,11 +113,10 @@
                             <div :class="(message.status === 'received') ? 'message bg-light col-6 mx-2' : 'message bg-success col-6 mx-2 '">
                                 {{ message.message}}
                                 <div :class="(message.status === 'received') ? 'time d-flex flex-row-reverse justify-content-end' : 'time d-flex justify-content-end'">{{ message.date }}
-                                    <i class="fa-solid fa-chevron-down m-2" @click="toggleMenu(msgIndex)"></i>
-                                    <ul class="dropdown-menu mt-4 " :class="{'d-block' : showMenuIndex === msgIndex }"   v-show="showMenuIndex === msgIndex">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <i class="fa-solid fa-chevron-down m-2" @click="toggleMenu(activeContact.id,msgIndex)"></i>
+                                    <ul class="dropdown-menu mt-4 " :class="{'d-block': showMenuIndex === selectedMessage }" >
+                                        <li><a class="dropdown-item" href="#" @click="deleteMessage(activeContact.id,msgIndex)">Remove</a></li>
+                                        <li><a class="dropdown-item" href="#" @click="favoriteMessage(msgIndex)">Favorite</a></li>
                                     </ul>
                                 </div>
                                 
