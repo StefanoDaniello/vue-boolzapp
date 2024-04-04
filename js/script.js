@@ -17,20 +17,26 @@ createApp({
     },
     methods: {
         createMessage( msg,status){
-            let prova ={
-                message: msg,
-                date: new Date().toLocaleTimeString(),
-                status: status
+            const utenteActiveIndex = this.contacts.findIndex(contact => contact.id === this.utenteactive);
+           
+            if(utenteActiveIndex !== -1){
+                let prova ={
+                    message: msg,
+                    date: new Date().toLocaleTimeString(),
+                    status: status,
+                }
+                this.contacts[utenteActiveIndex].messages.push(prova);
+                console.log(utenteActiveIndex)
             }
-            this.utenteactive.messages.push(prova);
+            
         },
         sendMessage() {
-                
             if (this.newMessage.trim() !== '') {
+                this.createMessage(this.newMessage, 'sent')
                 this.newMessage = '';
                 setTimeout(() => {
                     this.createMessage('ok', 'received');
-                }, 4000);
+                }, 1000);
             }
           
         },

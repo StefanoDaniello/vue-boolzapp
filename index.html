@@ -101,28 +101,17 @@
 
 
                 <div class="chat">
+
                     <div class="container ">
-                        <div class="row" v-for="(message, msgIndex) in activeContact.messages" :key="msgIndex" :class="(message.status === 'received') ? 'message bg-light w-50' : 'message bg-success d-flex justify-content-end '">
+                        <div class="row" v-for="(message, msgIndex) in activeContact.messages" :key="msgIndex" 
+                        :class="(message.status === 'received') ? 'message bg-light p-0 w-50' : 'message bg-success p-0  d-flex justify-content-end '">
                             <div class="col-6 mx-2" >
                                 {{ message.message}}
                                 <div class="time d-flex justify-content-end">{{ message.date }}</div>
                             </div>
                         </div>
                     </div>
-                    
-                    
 
-                    <!-- mesaggio che invio -->
-                    <div class="container">
-                        <div class="row d-flex justify-content-end" >
-                            <div class="col-6" v-for="(prova, index) in messages" :key="index" >
-                                <div :class="(message.status === 'received') ? 'message bg-light' : 'message bg-success '">
-                                    {{prova.message}}
-                                    <div class="time d-flex justify-content-end">{{prova.date }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     
                     
                 </div>
