@@ -8,44 +8,45 @@ createApp({
         return {
             contacts,
             newMessage:'',
-            saluto:'',
+            // saluto:'',
             data:new Date().toLocaleTimeString(),
             bgmessage:false,
             bgmessage2:false,
             messages:[],
-            utenteactive:null,
+            utenteactive:1,
             searchText: '',
         }
     },
     methods: {
-        sendMessage() {
-
-            if (this.newMessage.trim() !== '') {
-              this.messages.push(this.newMessage);
-              this.bgmessage = true;
-              this.newMessage = '';
-              this.data= new Date().toLocaleTimeString();
+        createMessage( msg,status){
+            let prova ={
+                message: msg,
+                date: new Date().toLocaleTimeString(),
+                status: status
             }
-            setTimeout(() => {
-                this.bgmessage2 = true;
-                this.saluto='ciao';
-                this.data= new Date().toLocaleTimeString();
-            }, 4000);
+            this.messages.push(prova);
         },
-        sendMessage2(){
-
+        sendMessage() {
+                
+            if (this.newMessage.trim() !== '') {
+                this.newMessage = '';
+                this.bgmessage = true;
+                setTimeout(() => {
+                    this.bgmessage2 = true;
+                    this.createMessage('ok', 'received');
+                }, 4000);
+            }
+          
         },
         active(id) {
             this.utenteactive = id;
         }
         
     },
-    mounted() {
-        if (this.utenteactive === null) {
-            this.utenteactive = this.contacts[0].id;
-        }
-    },
     computed: {
+        activeContact() {
+            return this.contacts.find(contact => contact.id === this.utenteactive);
+        },
         findUser() {
             return this.contacts.filter(contact => {
               return contact.name.toLowerCase().includes(this.searchText.toLowerCase());
