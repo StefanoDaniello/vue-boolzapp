@@ -25,6 +25,7 @@ createApp({
                     message: msg,
                     date: new Date().toLocaleTimeString(),
                     status: status,
+                    favorite: false 
                 }
                 this.contacts[utenteActiveIndex].messages.push(prova);
                 console.log(utenteActiveIndex)
@@ -56,6 +57,13 @@ createApp({
             const contactIndex = this.contacts.findIndex(contact => contact.id === chatId);
             if (contactIndex !== -1) {
                 this.contacts[contactIndex].messages.splice(msgIndex, 1);
+            }
+        },
+        favoriteMessage(msgIndex) {
+            const activeContactIndex = this.contacts.findIndex(contact => contact.id === this.utenteactive);
+            if (activeContactIndex !== -1) {
+                // Inverti lo stato del messaggio preferito
+                this.contacts[activeContactIndex].messages[msgIndex].favorite = !this.contacts[activeContactIndex].messages[msgIndex].favorite;
             }
         },
         getContactIndex(id){
@@ -112,6 +120,13 @@ createApp({
             }else{
                 return '';
             }
+        },
+        countFavoriteMessages() {
+            const activeContactIndex = this.contacts.findIndex(contact => contact.id === this.utenteactive);
+            if (activeContactIndex !== -1) {
+                return this.contacts[activeContactIndex].messages.filter(message => message.favorite).length;
+            }
+            return '';vvf
         }
     }
 }).component('Picker', Picker).mount('#app');
