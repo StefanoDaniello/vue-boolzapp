@@ -1,5 +1,5 @@
 import {contacts} from "./data.js";
-
+import Picker from './emoji-picker.js';
 const {createApp} = Vue;
                                                                                                 
 createApp({
@@ -13,7 +13,7 @@ createApp({
             utenteactive:1,
             searchText: '',
             showMenuIndex: null,
-            selectedMessage:0,
+            showEmoji: false,
         }
     },
     methods: {
@@ -42,34 +42,59 @@ createApp({
           
         },
         active(id) {
+            this.showMenuIndex = null;
             this.utenteactive = id;
         },
-        toggleMenu(chatId, msgIndex) {
-            const utenteActiveIndex = this.contacts.findIndex(contact => contact.id === chatId);
-            if (utenteActiveIndex !== -1) {
-                this.selectedMessage = this.contacts[utenteActiveIndex].messages[msgIndex];
-                if(this.selectedMessage === this.showMenuIndex) {
-                    this.showMenuIndex = null;
-                }
-                else {
-                    this.showMenuIndex = this.selectedMessage;
-                }
-                console.log(this.selectedMessage);
+        toggleMenu(msgIndex) {
+            if (this.showMenuIndex === msgIndex) {
+                this.showMenuIndex = null;
+            } else {
+                this.showMenuIndex = msgIndex;
             }
-            // if (this.showMenuIndex === msgIndex) {
-            //     this.showMenuIndex = null;
-            // } else {
-            //     this.showMenuIndex = msgIndex;
-            // }
         },
         deleteMessage(chatId, msgIndex) {
-            // Trova l'indice del contatto corrente
             const contactIndex = this.contacts.findIndex(contact => contact.id === chatId);
             if (contactIndex !== -1) {
-                    this.contacts[contactIndex].messages.splice(msgIndex, 1);
-                }
+                this.contacts[contactIndex].messages.splice(msgIndex, 1);
             }
-        
+        },
+        getContactIndex(id){
+            const i = this.contacts.findIndex(el=> el.id === id);
+            const lastmessages =this.contacts[i].messages.length -1;
+            if(lastmessages >= 0){
+                return this.contacts[i].messages[lastmessages];
+            }else{
+                return '';
+            }
+        },
+        getLastMessages(id) {
+            if(this.getContactIndex(id)){
+                return this.getContactIndex(id).message;
+            }else{
+                return '';
+            }
+        },
+        getLastAccess(id){
+            if(this.getContactIndex(id)){
+                return this.getContactIndex(id).date;
+            }else{
+                return '';
+            }
+        },
+        onSelectEmoji(emoji) {
+            console.log(emoji)
+            this.newMessage += emoji.i;
+            /*
+              // result
+              { 
+                  i: "😚", 
+                  n: ["kissing face"], 
+                  r: "1f61a", // with skin tone
+                  t: "neutral", // skin tone
+                  u: "1f61a" // without tone
+              }
+              */
+        },
     },
     computed: {
         activeContact() {
@@ -79,8 +104,16 @@ createApp({
             return this.contacts.filter(contact => {
               return contact.name.toLowerCase().includes(this.searchText.toLowerCase());
             });
+        },
+        lastAccess() {
+            const index = this.activeContact.messages.length -1;
+            if(index >= 0){
+                return this.activeContact.messages[index].date;
+            }else{
+                return '';
+            }
         }
     }
-}).mount('#app')
+}).component('Picker', Picker).mount('#app');
 
 

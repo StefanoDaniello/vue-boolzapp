@@ -13,7 +13,11 @@
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
     <!-- javascript vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="js/script.js" defer type="module"></script>
+    <!-- emoji -->
+    <script src="./js/emoji-picker.js" type="module"></script>
+    <link rel="stylesheet" href="./js/style.css">    
+    <!-- javascript -->
+    <script src="./js/script.js" type="module"></script>
     <title>vue-boolzapp</title>
 
 
@@ -65,15 +69,15 @@
                         :class="{'active' : utenteactive === contact.id}">
                         <div class="d-flex ">
                             <div class="avatar">
-                                <img :src="`./img/${contact.avatar}`" alt="{{contact.name}}">
+                                <img :src="`./img/${contact.avatar}`" alt={{contact.name}}>
                             </div>
                             <div class="mx-2">
                                 <h6 class="name">{{contact.name}}</h6>
-                                <div class="lastmessage" >{{contact.messages[contact.messages.length -1].message}}</div>
+                                <div class="lastmessage" >{{getLastMessages(contact.id)}}</div>
                             </div>
                         </div>
                         <div class="mx-1 time none">Ultimo Acesso oggi alle :
-                            <div class="time text-center">{{activeContact.messages[activeContact.messages.length -1].date}}</div>
+                            <div class="time text-center">{{getLastAccess(contact.id)}}</div>
                         </div>
 
                         
@@ -91,7 +95,7 @@
                         </div>
                         <div>
                             <h6 class="mx-1 mt-3">{{activeContact.name}}</h6>
-                            <p class="mx-1 time "> <span class="none">Ultimo acesso oggi alle</span>  {{activeContact.messages[activeContact.messages.length -1].date}}</p>
+                            <p class="mx-1 time "> <span class="none">Ultimo acesso oggi alle</span>  {{lastAccess}}</p>
                         </div>
                         
                     </div>
@@ -111,8 +115,8 @@
                             <div :class="(message.status === 'received') ? 'message bg-light col-md-6 col-sm-12  mx-2' : 'message bg-success col-md-8 col-sm-12  mx-2 '">
                                 {{ message.message}}
                                 <div :class="(message.status === 'received') ? 'time d-flex flex-row-reverse justify-content-end' : 'time d-flex justify-content-end'">{{ message.date }}
-                                    <i class="fa-solid fa-chevron-down m-2" @click="toggleMenu(activeContact.id,msgIndex)"></i>
-                                    <ul class="dropdown-menu mt-4 " :class="{'d-block': showMenuIndex === selectedMessage }" >
+                                    <i class="fa-solid fa-chevron-down m-2" @click="toggleMenu(msgIndex)"></i>
+                                    <ul class="dropdown-menu mt-4 " :class="{'show': showMenuIndex === msgIndex}" >
                                         <li><a class="dropdown-item" href="#" @click="deleteMessage(activeContact.id,msgIndex)">Remove</a></li>
                                         <li><a class="dropdown-item" href="#" @click="favoriteMessage(msgIndex)">Favorite</a></li>
                                     </ul>
@@ -125,7 +129,10 @@
             
                 <div class="messageinput">
                     <div class="bg-body-secondary d-flex h-100 align-items-center justify-content-center ">
-                        <span class="px-3"><i class="fa-regular fa-face-smile color-i" ></i></span>
+                        <div class="icons">
+                            <i class="fa-regular fa-face-smile color-i " @click="showEmoji = !showEmoji"></i>
+                            <Picker @select="onSelectEmoji" class="mia" :class="{'d-none': !showEmoji}" />
+                        </div>
                         <input type="text"  class="form-control my-2" placeholder="Scrivi un messaggio" 
                         v-model="newMessage" @keyup.enter="sendMessage">
                         <span class="px-3"><i :class="(newMessage !== '') ? 'fa-solid fa-paper-plane color-i' : 'fa-solid fa-microphone color-i'" @click="sendMessage"></i></span>
