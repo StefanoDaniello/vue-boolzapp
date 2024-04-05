@@ -93,16 +93,6 @@ createApp({
         onSelectEmoji(emoji) {
             console.log(emoji)
             this.newMessage += emoji.i;
-            /*
-                 result
-              { 
-                  i: "😚", 
-                  n: ["kissing face"], 
-                  r: "1f61a", // with skin tone
-                  t: "neutral", // skin tone
-                  u: "1f61a" // without tone
-              }
-              */
         },
         toggleMode() {
             this.darkMode = !this.darkMode;
