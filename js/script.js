@@ -14,6 +14,7 @@ createApp({
             searchText: '',
             showMenuIndex: null,
             showEmoji: false,
+            darkMode: false,
         }
     },
     methods: {
@@ -40,7 +41,7 @@ createApp({
                     this.createMessage('ok', 'received');
                 }, 1000);
             }
-          
+            this.showEmoji=false
         },
         active(id) {
             this.showMenuIndex = null;
@@ -93,7 +94,7 @@ createApp({
             console.log(emoji)
             this.newMessage += emoji.i;
             /*
-              // result
+                 result
               { 
                   i: "😚", 
                   n: ["kissing face"], 
@@ -102,6 +103,9 @@ createApp({
                   u: "1f61a" // without tone
               }
               */
+        },
+        toggleMode() {
+            this.darkMode = !this.darkMode;
         },
     },
     computed: {
@@ -126,7 +130,7 @@ createApp({
             if (activeContactIndex !== -1) {
                 return this.contacts[activeContactIndex].messages.filter(message => message.favorite).length;
             }
-            return '';vvf
+            return '';
         }
     }
 }).component('Picker', Picker).mount('#app');

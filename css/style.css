@@ -124,6 +124,111 @@ i
     bottom: 100%;
     left: 70%;
 }
+/* color  */
+.bg-white-st{
+    background-color: white;
+}
+
+
+
+
+.prev::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid;
+    border-right: 1px solid ;
+    display: block;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%) rotate(-45deg);
+}
+
+.next::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    display: block;
+    position: absolute;
+    bottom: 35%;
+    left: 50%;
+    transform: translate(-50%) rotate(135deg);
+}
+
+.app {
+    background-color: #fff;
+    color: #000;
+    transition: 1s;
+}
+  
+  .dark-mode {
+    background-color: #333;
+    color: #fff;
+    transition: 1s;
+  }
+  
+  #toggle-btn {
+    margin: 20px;
+    display: inline-block;
+    width:50px;
+    height: 30px;
+    background-color: white;
+    background-size: 100%;
+    border-radius: 25px;
+    content: '';
+    position: relative;
+    transition: all ease-in-out .4s;
+    cursor: pointer;
+}
+
+#toggle-btn::before {
+    position: absolute;
+    width:15px;
+    height: 15px;
+    background-color: black;
+    border-radius: 50%;
+    left:7px;
+    top:7px;
+    content: '';
+    transition: all ease-in-out .4s;
+    z-index: 10;
+}
+
+
+#toggle-btn.toggle-btn--dark {
+     background-color: black;
+}
+
+#toggle-btn.toggle-btn--dark::before {
+    left: 28px;
+    background-color: white;
+}
+
+
+
+.moon-sun {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 7px;
+    left: 28px;
+    background-image:  url('https://png.pngtree.com/png-vector/20230414/ourmid/pngtree-sun-orange-three-dimensional-illustration-png-image_6694186.png');
+    background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+
+.toggle-btn--dark .moon-sun {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    background-image: url('https://png.pngtree.com/png-clipart/20210310/original/pngtree-the-surface-of-a-round-moon-png-image_5955908.png');
+} 
+
 
 @media screen and (max-width: 768px) {
     .none{
