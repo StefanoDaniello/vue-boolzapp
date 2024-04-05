@@ -62,7 +62,7 @@ ul{
     overflow: hidden; 
 }
 #chatWrapper{
-    width: 60%;
+    width: 60% !important;
     
 }
 .chat{

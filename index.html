@@ -21,10 +21,10 @@
     <title>vue-boolzapp</title>
 </head>
 <body>
-    <div id="app" class="py-4">
+    <div id="app" class="py-4 ">
         
-        <div class="container h-100   p-0 d-flex " 
-        :class="(darkMode) ? 'dark-mode ' : 'app'">
+        <div class="container h-100  p-0 d-flex " 
+        :class="['app', { 'dark-mode': darkMode }]">
 
             <div id="contactList" >
                 <div 
@@ -90,7 +90,7 @@
                 
             </div>
 
-            <div id="chatWrapper " >
+            <div id="chatWrapper">
                 <div 
                 :class="(darkMode) ? 'dark-mode toolbar d-flex justify-content-between ' : 'app2 toolbar d-flex justify-content-between '"> 
 
