@@ -64,7 +64,8 @@
                     <i class="fas fa-search search-icon"></i>
                 </div>  
 
-                <div :class="(darkMode) ? 'contacts dark-mode' : ' contacts app'">
+                <div class="contacts" 
+                :class="(darkMode) ? 'dark-mode' : 'app'">
                     <div v-if="findUser.length === 0" class="text-center bg-danger bg-opacity-25 p-3 rounded-2 ">non ci sono elementi per la tua ricerca</div>
                     <div class="contact d-flex justify-content-between " v-for="(contact, index) in findUser" :key="index" @click="active(contact.id)"
                     :class="[
@@ -80,7 +81,7 @@
                                 <div class="lastmessage" >{{getLastMessages(contact.id)}}</div>
                             </div>
                         </div>
-                        <div class="mx-1 time none">Ultimo Acesso oggi alle :
+                        <div class="time none">Ultimo Acesso :
                             <div class="time text-center">{{getLastAccess(contact.id)}}</div>
                         </div>
 
@@ -100,7 +101,7 @@
                         </div>
                         <div>
                             <h6 class="mx-1 mt-3">{{activeContact.name}}</h6>
-                            <p class="mx-1 time "> <span class="none">Ultimo acesso oggi alle</span>  {{lastAccess}}</p>
+                            <p class="mx-1"> <span class="none">Ultimo acesso :</span>  {{lastAccess}}</p>
                         </div>
                         
                     </div>
@@ -119,13 +120,13 @@
                 <div class="chat">
                     <div class="container">
                         <div :class="(message.status === 'received') ? 'row' : 'row d-flex justify-content-end'"
-                            v-for="(message, msgIndex) in activeContact.messages" :key="msgIndex">
+                            v-for="(message, msgIndex) in activeContact.messages" :key="msgIndex" ref="messages">
                             <div 
                             :class="[(message.status === 'received' && darkMode) ? 'message dark-mode col-md-6 col-sm-12 mx-2' : 
                             ((message.status === 'received') ? 'message bg-light col-md-6 col-sm-12 mx-2' : 'message bg-success col-md-8 col-sm-12 mx-2')
                             ]" >
                                 {{ message.message }}
-                                <div :class="(message.status === 'received') ? 'time d-flex flex-row-reverse justify-content-end' : 'time d-flex justify-content-end'">
+                                <div :class="(message.status === 'received') ? ' d-flex flex-row-reverse justify-content-end' : ' d-flex justify-content-end'">
                                     {{ message.date }}
                                     <i v-if="message.favorite" class="fa-solid fa-star m-2"></i>
                                     <i class="fa-solid fa-chevron-down m-2" @click="toggleMenu(msgIndex)"></i>

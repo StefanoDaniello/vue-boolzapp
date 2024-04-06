@@ -1,14 +1,15 @@
 import {contacts} from "./data.js";
 import Picker from './emoji-picker.js';
 const {createApp} = Vue;
-                                                                                                
+                    
+const dt = luxon.DateTime;
 createApp({
     data() {
       
         return {
             contacts,
             newMessage:'',
-            data:new Date().toLocaleTimeString(),
+            data: dt.now().setLocale('it').toFormat('dd/MM/yyyy HH:mm:ss'),
             messages:[],
             utenteactive:1,
             searchText: '',
@@ -24,12 +25,14 @@ createApp({
             if(utenteActiveIndex !== -1){
                 let prova ={
                     message: msg,
-                    date: new Date().toLocaleTimeString(),
+                    date: dt.now().setLocale('it').toFormat('dd/MM/yyyy HH:mm:ss'),
                     status: status,
                     favorite: false 
                 }
                 this.contacts[utenteActiveIndex].messages.push(prova);
-                console.log(utenteActiveIndex)
+                this.$nextTick(() => {
+                    this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView({ beaviur: 'smooth' });
+                })
             }
             
         },
@@ -97,6 +100,9 @@ createApp({
         toggleMode() {
             this.darkMode = !this.darkMode;
         },
+    },
+    mounted(){
+        console.log(this.$refs.messages[this.$refs.messages.length-1])
     },
     computed: {
         activeContact() {

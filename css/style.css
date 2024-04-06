@@ -44,10 +44,19 @@ ul{
     background-color: white;
 }
 .contacts{
-    height: calc(100% - 190px);
+    height: calc(100% - 200px);
     overflow-y: auto;
 }
 
+.contacts::-webkit-scrollbar {
+    width: 10px; 
+    background-color: transparent; 
+}
+
+.contacts::-webkit-scrollbar-thumb {
+    background-color: rgb(184, 184, 184);
+    border-radius: 5px;
+}
 .contact{
     padding: 10px;
     border-bottom: 1px solid  rgb(172, 170, 170);
@@ -71,9 +80,17 @@ ul{
     padding: 20px;
     background-image: url(../img/mine.jpg);
 }
-i
+.chat::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent; 
+}
+
+.chat::-webkit-scrollbar-thumb {
+    background-color: rgb(184, 184, 184);
+    border-radius: 5px; 
+}
 .time{
-    font-size: 10px;
+    font-size: 12px;
 }
 .messageinput{
     height: 50px;
