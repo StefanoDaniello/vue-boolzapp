@@ -41,7 +41,7 @@
                     <div class="d-flex align-items-center">
                         <i class="fa-solid fa-circle-notch mx-2 color-i"></i>
                         <i class="fa-solid fa-message mx-2 color-i"></i>
-                        <i class="fa-solid fa-ellipsis-vertical mx-2 color-i"></i>
+                        <i class="fa-solid fa-ellipsis-vertical mx-2 color-i "></i>
                     </div>
                     
 
@@ -112,7 +112,11 @@
                         </div>
                         <i class="fa-solid fa-search mx-2 color-i"></i>
                         <i class="fa-solid fa-paperclip mx-2 color-i"></i>
-                        <i class="fa-solid fa-ellipsis-vertical mx-2 color-i"></i>
+                        <i class="fa-solid fa-ellipsis-vertical mx-2 color-i" @click="dropdown = !dropdown"></i>
+                        <ul class="dropdown-menu st-mt" :class="{'show': dropdown}">
+                            <li><a class="dropdown-item" href="#" @click="removeMessage(activeContact.id)">Remove Message</a></li>
+                            <li><a class="dropdown-item" href="#" @click="removeChat(activeContact.id)">Remove Chat</a></li>
+                        </ul>
                     </div>
                 </div>
 

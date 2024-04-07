@@ -16,6 +16,7 @@ createApp({
             showMenuIndex: null,
             showEmoji: false,
             darkMode: false,
+            dropdown: false,
         }
     },
     methods: {
@@ -48,6 +49,7 @@ createApp({
         },
         active(id) {
             this.showMenuIndex = null;
+            this.dropdown = null;
             this.utenteactive = id;
         },
         toggleMenu(msgIndex) {
@@ -99,6 +101,25 @@ createApp({
         },
         toggleMode() {
             this.darkMode = !this.darkMode;
+        },
+        removeMessage(id){
+            const contactIndex = this.contacts.findIndex(contact => contact.id === id);
+            if(contactIndex !== -1){
+                this.contacts[contactIndex].messages = [];
+            }
+        },
+        removeChat(id){
+            const contactIndex = this.contacts.findIndex(contact => contact.id === id);
+            if(contactIndex !== -1){
+                this.contacts.splice(contactIndex, 1);
+                if(contactIndex === 0 && this.contacts.length !== 0){
+                    this.utenteactive = this.contacts[0].id;
+                    console.log(this.contacts.length)
+                }else if(contactIndex === 0 && this.contacts.length === 0){
+                    this.utenteactive = null;
+                }
+            }
+           
         },
     },
     mounted(){
