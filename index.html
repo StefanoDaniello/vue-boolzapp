@@ -41,7 +41,34 @@
                     <div class="d-flex align-items-center">
                         <i class="fa-solid fa-circle-notch mx-2 color-i"></i>
                         <i class="fa-solid fa-message mx-2 color-i"></i>
-                        <i class="fa-solid fa-ellipsis-vertical mx-2 color-i "></i>
+                        <i class="fa-solid fa-ellipsis-vertical mx-2 color-i" @click="dropdown2 = !dropdown2"></i>
+                       
+                        <div class="dropstart left-menu">
+                            <ul class="dropdown-menu p-2 mt-3 text-center" :class="{'show': dropdown2}">
+                                <li class="m-2">
+                                    Name
+                                    <input type="name" class="form-control" v-model="name">
+                                </li>
+                                <li class="m-2">
+                                    Surname
+                                    <input type="surname" class="form-control" v-model="surname">
+                                </li>
+                                <li class="m-2">
+                                    <select class="form-select"  v-model="selectedValue">
+                                        <option selected value="">select Img</option>
+                                        <option value="avatar_8.jpg">men</option>
+                                        <option value="avatar_6.jpg">women</option>
+                                    </select>
+                                   
+                                </li>
+                               <li>
+                                <div class="bg-danger bg-opacity-25 rounded-2 " :class="{'d-none': errore === false}" ref="name">inserisci un nome ed un immagine</div>
+                               </li>
+                                <li class="d-flex justify-content-center m-2">
+                                    <button class="btn btn-success" @click="addContact()">Add Contact</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     
 
@@ -97,7 +124,11 @@
 
                     <div class="d-flex align-items-center mx-2" >
                         <div class="avatar" >
-                            <img :src="`./img/avatar_${utenteactive}.jpg`" alt={{activeContact.name}}>
+                            <img v-if="utenteactive <= 8" 
+                            :src="`./img/avatar_${utenteactive}.jpg`" alt={{activeContact.name}}>
+                            <img v-if="utenteactive > 8" 
+                            :src="`./img/${selectedValue}`" alt={{name}}>
+
                         </div>
                         <div>
                             <h6 class="mx-1 mt-3">{{activeContact.name}}</h6>

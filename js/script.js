@@ -17,6 +17,12 @@ createApp({
             showEmoji: false,
             darkMode: false,
             dropdown: false,
+            dropdown2: false,
+            name:'',
+            surname:'',
+            selectedValue:null,
+            errore: false,
+
         }
     },
     methods: {
@@ -108,19 +114,42 @@ createApp({
                 this.contacts[contactIndex].messages = [];
             }
         },
-        removeChat(id){
+        removeChat(id) {
             const contactIndex = this.contacts.findIndex(contact => contact.id === id);
-            if(contactIndex !== -1){
+            if (contactIndex !== -1) {
                 this.contacts.splice(contactIndex, 1);
-                if(contactIndex === 0 && this.contacts.length !== 0){
-                    this.utenteactive = this.contacts[0].id;
-                    console.log(this.contacts.length)
-                }else if(contactIndex === 0 && this.contacts.length === 0){
-                    this.utenteactive = null;
+                if (id === this.utenteactive) {
+                    if (this.contacts.length > 0) {
+                        this.utenteactive = this.contacts[0].id;
+                    } else {
+                        this.utenteactive = null;
+                    }
                 }
+                // Forza l'aggiornamento della vista
+                this.contacts = [...this.contacts];
+                console.log(this.contacts)
             }
-           
         },
+        addContact(){
+            if(this.name === '' || this.selectedValue === null){
+                this.errore = true;
+            }
+            if(this.name.trim() !== '' && this.selectedValue !== null){
+                const somma = this.contacts.length > 0 ? this.contacts[this.contacts.length - 1].id : 0;
+                
+                this.contacts.push({
+                    id: somma + 1,
+                    name: this.name + ' ' + this.surname,
+                    avatar:this. selectedValue,
+                    visible: true,
+                    messages: []
+                })
+                this.name = '';
+                this.surname = '';
+                this.dropdown2 = null;
+                this.errore = false;
+            }
+        }
     },
     mounted(){
         console.log(this.$refs.messages[this.$refs.messages.length-1])
