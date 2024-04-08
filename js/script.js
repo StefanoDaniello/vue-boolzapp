@@ -11,7 +11,7 @@ createApp({
             newMessage:'',
             data: dt.now().setLocale('it').toFormat('dd/MM/yyyy HH:mm:ss'),
             messages:[],
-            utenteactive:1,
+            utenteactive:null,
             searchText: '',
             showMenuIndex: null,
             showEmoji: false,
@@ -152,12 +152,19 @@ createApp({
         }
     },
     mounted(){
-        console.log(this.$refs.messages[this.$refs.messages.length-1])
+        // console.log(this.$refs.messages[this.$refs.messages.length-1])
     },
     computed: {
+
         activeContact() {
-            return this.contacts.find(contact => contact.id === this.utenteactive);
-        },
+            if (this.utenteactive !== null) {
+                return this.contacts.find(contact => contact.id === this.utenteactive);
+            }else {
+                // let x = 0
+                // array[x]
+                return 0;
+            }
+        },        
         findUser() {
             return this.contacts.filter(contact => {
               return contact.name.toLowerCase().includes(this.searchText.toLowerCase());
