@@ -162,7 +162,7 @@ createApp({
             }else {
                 // let x = 0
                 // array[x]
-                return 0;
+                return this.utenteactive = 0;
             }
         },        
         findUser() {
